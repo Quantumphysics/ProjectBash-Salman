@@ -1,0 +1,29 @@
+#!/bin/bash
+if [ $PASSWORD == terminal ]; then
+	echo "[INFO] PASSWORD AUTHORIZED"
+else
+	PASSWORD=$(zenity --password --title="Authorization" --text="Welcome to the graphical interface for the terminal. Type the password to preceed.")
+fi
+VALUETWO=$PASSWORD
+
+if [ $PASSWORD == terminal ]; then
+	echo "[INFO] Entered the Graphical Interface with Level 1 Clearance."
+	VALUE=$(zenity --entry --title="Graphical User Interface Pre-Alpha Designed by Salman Hossain " --text="Avaliable Commands on the Graphical User Interface:\n\n \tmath - This will allow you do do some quick math.\n\n")
+	if [ $VALUE == math ]; then
+		DOMATH=$(zenity --entry --title="Graphical User Interface Pre-Alpha Designed by Salman Hossain" --text="Please input the calculation you want to do with no spaces.")
+		ANSWER=$(eq -m $DOMATH)
+		zenity --info --title="ANSWER " --text="ANSWER: $ANSWER "
+	fi 
+
+	
+	
+	interface 
+
+else
+	zenity --question --title="Graphical User Interface Designed by Salman Hossain" --text="You did not enter the correct password do you want to leave the graphical interface?"
+	if [ $? == 0 ]; then
+		echo "[INFO] Left Graphical Interface."
+	else
+		interface
+	fi
+fi
